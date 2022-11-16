@@ -1,3 +1,13 @@
+<!-- <form **method="POST"**>
+  <input type="text" name="age" />
+  <input type="submit" />
+</form> -->
+
+<form **method="POST" action="/dashboard/post.php"**>
+  <input type="text" name="name" />
+  <input type="submit" />
+</form>
+
 <?php
 echo "Hello Jasmin";
 
@@ -65,34 +75,33 @@ echo "</br>";
 var_dump(rand(0, 44));
 echo "</br>";
 var_dump(is_nan(6));
-echo "</br>";
+// echo "</br>";
 $list = [4, 5, 6, 7];
 $list2 = array(6, 7, 8, 9);
-var_dump(max($list), min($list2));
-echo "</br>";
-var_dump($list[0]);
-echo "</br>";
-$list[0] = 11;
-var_dump($list[0]);
-echo "</br>";
-$list4 = ['a', 'b'];
-$list4[] = 'c';
-var_dump($list4[2]);
-echo "</br>";
-array_unshift($list4, 3);
-var_dump($list4[0]);
-echo "</br>";
-var_dump(in_array('b', $list4));
-echo "</br>";
-var_dump(array_search('8', $list2));
-echo "</br>";
-var_dump(count($list2));
-echo "</br>";
+// var_dump(max($list), min($list2));
+// echo "</br>";
+// var_dump($list[0]);
+// echo "</br>";
+// $list[0] = 11;
+// var_dump($list[0]);
+// echo "</br>";
+// $list4 = ['a', 'b'];
+// $list4[] = 'c';
+// var_dump($list4[2]);
+// echo "</br>";
+// array_unshift($list4, 3);
+// var_dump($list4[0]);
+// echo "</br>";
+// var_dump(in_array('b', $list4));
+// echo "</br>";
+// var_dump(array_search('8', $list2));
+// echo "</br>";
+// var_dump(count($list2));
+// echo "</br>";
 function myFunction($value) {
     return $value * 2;
 };
 $listNew = (array_map("myFunction", $list2));
-echo "</br>";
 echo "</br>";
 var_dump($listNew[3]);
 echo "</br>";
@@ -176,7 +185,8 @@ echo $boby->whatAge();
 echo "</br>";
 
 class Cat {
-  public function __construct(public $name)
+  public int $name;
+  public function __construct($name)
   {
     $this->name = $name;
   }
@@ -184,8 +194,166 @@ class Cat {
     echo $this->name . " mljac mljac";
   }
 }
-$mica = new Cat("Mica");
+$mica = new Cat(7);
 echo $mica->eats();
 echo "</br>";
 
+class Animal {
+  public $age;
+
+  public function __construct($age)
+  {
+    $this->age = $age;
+  }
+
+  public function eat() {
+    echo "animal is eating";
+  }
+}
+
+class Cow extends Animal {
+  public function eat() {
+    echo $this->age . " cow eating age";
+  }
+}
+
+$sarena = new Cow(5);
+$sarena->eat();
+echo "</br>";
+class Utils {
+  public static function version() {
+    return "1.0";
+  }
+}
+
+echo Utils::version();
+
+echo "</br>";
+
+class Plane {
+  public $brand;
+}
+
+$airbus = new Plane();
+$boing = new Plane();
+
+var_dump($airbus == $boing) . " == ";
+echo "</br>";
+
+var_dump($airbus === $boing) . " === ";
+echo "</br>";
+
+class Pas {
+  const BREED = "Tornjak";
+  public $name = 'Good dog';
+  public $age = 10;
+  public $color = 'gray';
+
+  public function __clone()
+  {
+    $this->cloned = true;
+  }
+}
+
+$buba = new Pas();
+
+foreach ($buba as $key => $value) {
+  echo $key . " => " . $value . ", ";
+}
+echo "</br>";
+// // var_dump($buba->cloned);
+
+// $cuko = clone $buba;
+// echo "</br>";
+
+// var_dump($cuko->cloned);
+// echo "</br>";
+
+// foreach ($cuko as $key => $value) {
+//   echo $key . " => " . $value . ", ";
+// }
+
+// require_once("test.php");
+
+// echo "</br>";
+// echo __FILE__;
+
+// echo "</br>";
+// echo getcwd();
+
+// echo "</br>";
+// echo __DIR__;
+
+// // phpinfo();
+// echo "</br>";
+
+try {
+  echo 1 / 0;
+} catch (DivisionByZeroError $e) {
+  echo $e->getMessage() . " I told you so";
+} catch (Throwable $th) {
+  echo $th->getMessage();
+} finally {
+  echo "...finally";
+}
+echo "</br>";
+
+$timeStamp = time();
+echo date("Y-m-d", $timeStamp);
+
+echo strtotime('now');
+echo strtotime('4 May 2020');
+echo strtotime('+1 day');
+echo strtotime('+1 month');
+echo strtotime('last Sunday');
+
+echo "</br>";
+
+define("TEST", "some value");
+echo TEST;
+echo "</br>";
+
+enum Status {
+  case EATING;
+  case SLEEPING;
+  case RUNNING;
+}
+
+class Ker {
+  public Status $status;
+}
+
+$rex = new Ker();
+
+$rex->status = Status::RUNNING;
+
+// if ($rex->status == Status::RUNNING) {
+//   echo "rex is running";
+// } else {
+//   echo "rex is sleeping or eating";
+// }
+
+// if (isset($_GET["name"])) {
+//   echo '<p>The name is ' . $_GET['name'];
+// } else {
+//   echo "Get Not set";
+// }
+
+echo "</br>";
+
+if (isset($_POST['name'])) {
+  echo '<p>The name is ' . $_POST['name'];
+} else {
+  echo "Post Not set";
+}
+
 ?>
+<!-- <form>
+  <input type="text" name="name" />
+  <input type="submit" />
+</form> -->
+
+<!-- <form **method="POST"**>
+  <input type="text" name="age" />
+  <input type="submit" />
+</form> -->
