@@ -8,8 +8,88 @@
   <input type="submit" />
 </form>
 
+<form method="POST">
+  <input type="text" name="name" />
+  <input type="submit" />
+</form>
+
 <?php
-echo "Hello Jasmin";
+
+require 'vendor/autoload.php';
+
+use Carbon\Carbon;
+
+echo Carbon::now();
+
+echo "</br>";
+
+
+$arrdata = [1, 2, 3, 4];
+$jsondata = json_encode($arrdata);
+$decoded = json_decode($jsondata);
+
+var_dump($jsondata);
+echo "</br>";
+var_dump($decoded);
+echo "</br>";
+
+// mail("adilovic79@yahoo.com", "testing php", "sending email");
+
+
+
+$file = fopen("text.txt", "r");
+var_dump($file);
+
+$wfile = fopen("text.txt", "w");
+$data = "testing";
+fwrite($wfile, $data);
+
+
+echo "</br>";
+
+var_dump(file_exists("text.txt"));
+
+echo "Session -----------------------------------";
+echo "</br>";
+
+// session_start();
+
+if (isset($_POST['name'])) {
+  $_SESSION['name'] = $_POST['name'];
+}
+if (isset($_POST['name'])) {
+  echo '<p>Hello session ' . $_POST['name'];
+ echo '<p> ::::::   Hello session ' . $_SESSION['name'];
+
+} else {
+  if (isset($_SESSION['name'])) {
+    echo '<p>Hello session ' . $_SESSION['name'];
+  }
+}
+
+session_unset();
+setcookie(session_name(), "");
+
+echo "</br>";
+echo "Cookies -----------------------------------";
+echo "</br>";
+
+if (isset($_POST['name'])) {
+  setcookie('name', $_POST['name']);
+}
+if (isset($_POST['name'])) {
+  echo '<p>Hello ' . $_POST['name'];
+} else {
+  if (isset($_COOKIE['name'])) {
+    echo '<p>Hello cookie : ' . $_COOKIE['name'];
+  }
+}
+
+echo "</br>";
+    echo '<p>Hello cookie : ' . $_COOKIE['name'];
+echo "</br>";
+
+echo "Hello -----------------------------------";
 
 $base = 33;
 $side = 22;
